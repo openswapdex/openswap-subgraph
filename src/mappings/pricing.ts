@@ -16,20 +16,20 @@ export function getEthPriceInUSD(): BigDecimal {
 
   // all 3 have been created
   if (busdPair !== null && usdcPair !== null && usdtPair !== null) {
-    let totalLiquidityETH = busdPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve0)
-    let daiWeight = busdPair.reserve1.div(totalLiquidityETH)
+    let totalLiquidityETH = busdPair.reserve0.plus(usdcPair.reserve1).plus(usdtPair.reserve1)
+    let busdWeight = busdPair.reserve0.div(totalLiquidityETH)
     let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    let usdtWeight = usdtPair.reserve0.div(totalLiquidityETH)
-    return busdPair.token0Price
-      .times(daiWeight)
+    let usdtWeight = usdtPair.reserve1.div(totalLiquidityETH)
+    return busdPair.token1Price
+      .times(busdWeight)
       .plus(usdcPair.token0Price.times(usdcWeight))
-      .plus(usdtPair.token1Price.times(usdtWeight))
-    // dai and USDC have been created
+      .plus(usdtPair.token0Price.times(usdtWeight))
+    // BUSD and USDC have been created
   } else if (busdPair !== null && usdcPair !== null) {
-    let totalLiquidityETH = busdPair.reserve1.plus(usdcPair.reserve1)
-    let daiWeight = busdPair.reserve1.div(totalLiquidityETH)
+    let totalLiquidityETH = busdPair.reserve0.plus(usdcPair.reserve1)
+    let busdWeight = busdPair.reserve0.div(totalLiquidityETH)
     let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    return busdPair.token0Price.times(daiWeight).plus(usdcPair.token0Price.times(usdcWeight))
+    return busdPair.token1Price.times(busdWeight).plus(usdcPair.token0Price.times(usdcWeight))
     // USDC is the only pair so far
   } else if (usdcPair !== null) {
     return usdcPair.token0Price
@@ -47,6 +47,8 @@ let WHITELIST: string[] = [
   '0xb32ac3c79a94ac1eb258f3c830bbdbc676483c93', // OSWAP
   '0xaec945e04baf28b135fa7c640f624f8d90f1c3a6', // C98
   '0xb0e1fc65c1a741b4662b813eb787d369b8614af1', // IF
+  '0x31720b2276df3b3b757b55845d17eea184d4fc8f', // OAX
+  '0x0b15ddf19d47e6a86a56148fb4afffc6929bcb89', // IDIA
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
