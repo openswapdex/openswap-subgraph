@@ -2,6 +2,7 @@
   "name": "openswap-subgraph",
   "version": "1.0.0",
   "scripts": {
+    "setup":"npm i && npm install -g @graphprotocol/graph-cli@0.16.0 && npm run codegen && npm run build",
     "codegen": "graph codegen --output-dir src/types/",
     "build": "graph build",
     "deploy": "graph deploy  --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug --access-token "
@@ -9,11 +10,6 @@
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.16.0",
     "@graphprotocol/graph-ts": "^0.16.0",
-    "@typescript-eslint/eslint-plugin": "^2.0.0",
-    "@typescript-eslint/parser": "^2.0.0",
-    "eslint": "^6.2.2",
-    "eslint-config-prettier": "^6.1.0",
-    "prettier": "^1.18.2",
     "typescript": "^3.5.2"
   }
 }
