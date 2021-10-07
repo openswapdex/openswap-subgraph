@@ -4,7 +4,7 @@
   "scripts": {
     "codegen": "graph codegen --output-dir src/types/",
     "build": "graph build",
-    "deploy": "graph deploy hermanlui-ijs/os-ex --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug"
+    "deploy": "graph deploy  --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug --access-token "
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.16.0",
