@@ -24,15 +24,15 @@ export function getEthPriceInUSD(): BigDecimal {
       .times(busdWeight)
       .plus(usdcPair.token0Price.times(usdcWeight))
       .plus(usdtPair.token0Price.times(usdtWeight))
-    // BUSD and USDC have been created
-  } else if (busdPair !== null && usdcPair !== null) {
-    let totalLiquidityETH = busdPair.reserve0.plus(usdcPair.reserve1)
+    // BUSD and USDT have been created
+  } else if (busdPair !== null && usdtPair !== null) {
+    let totalLiquidityETH = busdPair.reserve0.plus(usdtPair.reserve1)
     let busdWeight = busdPair.reserve0.div(totalLiquidityETH)
-    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    return busdPair.token1Price.times(busdWeight).plus(usdcPair.token0Price.times(usdcWeight))
-    // USDC is the only pair so far
-  } else if (usdcPair !== null) {
-    return usdcPair.token0Price
+    let usdtWeight = usdtPair.reserve1.div(totalLiquidityETH)
+    return busdPair.token1Price.times(busdWeight).plus(usdtPair.token0Price.times(usdtWeight))
+    // BUSD is the only pair so far
+  } else if (busdPair !== null) {
+    return busdPair.token1Price
   } else {
     return ZERO_BD
   }
