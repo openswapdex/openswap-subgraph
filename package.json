@@ -1,6 +1,6 @@
 {
   "name": "openswap-subgraph",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "scripts": {
     "setup":"npm i && npm install -g @graphprotocol/graph-cli@0.16.0 && npm run codegen && npm run build",
     "codegen": "graph codegen --output-dir src/types/",
